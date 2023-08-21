@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { Text, View } from 'react-native';
+
+import { 
+  useFonts, 
+  Montserrat_400Regular,
+  Montserrat_700Bold 
+} from '@expo-google-fonts/montserrat'
+
+import { Routes } from './src/routes'
+
+
+import { styles } from './styles';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  let [fontLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_700Bold,
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontLoaded) {
+    return <Text style={{justifyContent:'center',alignItems:"center"}}> CARREGANDO FONTES...</Text>
+  } 
+
+    return (
+      <View style={styles.container}>
+        <Routes/>
+      </View>
+    );
+  }
+
+
+
